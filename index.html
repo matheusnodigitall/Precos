@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pacotes de Videomaker · @matheusnodigital1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#07000d; --ink:#fff; --mute:#c9b8d9;
+  --pink:#ff1fa9; --violet:#a21cff; --line:rgba(190,80,255,.35);
+  --card:rgba(255,255,255,.04);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
+  min-height:100vh;overflow-x:hidden;position:relative}
+body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(70px);z-index:0;pointer-events:none}
+body::before{width:60vmax;height:60vmax;top:-30vmax;right:-25vmax;background:radial-gradient(circle,#b01cff 0,transparent 65%);opacity:.55}
+body::after{width:50vmax;height:50vmax;bottom:-25vmax;left:-25vmax;background:radial-gradient(circle,#ff1fa9 0,transparent 65%);opacity:.3}
+main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:22px 18px 40px}
+.handle{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:0 auto 28px;
+  padding:8px 18px;border:1px solid var(--line);border-radius:999px;font-size:.85rem;color:var(--mute)}
+.handle b{color:var(--ink);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink)}
+h1{margin:0;text-align:center;font-weight:400;font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.1}
+h1 strong{display:block;font-weight:800;font-size:clamp(2.9rem,13vw,6rem);letter-spacing:-.04em;
+  background:linear-gradient(90deg,#c21cff,#ff1fa9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:var(--mute);margin:10px 0 34px;font-size:clamp(.95rem,3.6vw,1.1rem)}
+.grid{display:grid;gap:16px;align-items:center}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.08fr 1fr;gap:20px}}
+.plan{position:relative;padding:22px 20px;border-radius:26px;background:var(--card);border:1px solid var(--line);
+  backdrop-filter:blur(8px);cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;outline-offset:3px}
+.plan:focus-visible{outline:2px solid var(--pink)}
+.plan.on{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink),0 0 38px rgba(255,31,169,.45);transform:scale(1.02)}
+.tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:4px 14px;border-radius:999px;font-size:.75rem;font-weight:600;
+  background:linear-gradient(90deg,var(--pink),var(--violet));white-space:nowrap}
+.head{display:flex;align-items:center;gap:12px}
+.ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);flex:none}
+.plan.feat .ico{background:linear-gradient(135deg,var(--pink),var(--violet))}
+.ico svg{width:22px;height:22px;fill:#fff}
+.head h2{margin:0;font-size:1.25rem;font-weight:800}
+.head p{margin:2px 0 0;font-size:.8rem;color:var(--mute)}
+.price{display:flex;align-items:baseline;gap:6px;margin:18px 0 16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.price small{color:var(--mute)}
+.price .v{font-size:clamp(3rem,14vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--pink);
+  font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(255,31,169,.4)}
+.price .c{font-weight:800;color:var(--pink);font-size:1.2rem}
+.price .m{margin-left:auto;color:var(--mute);font-size:.9rem}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+li{display:flex;align-items:center;gap:12px;font-size:1.05rem}
+li svg{width:34px;height:34px;padding:7px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--violet));fill:none;stroke:#fff;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+li svg.f{fill:#fff;stroke:none}
+li b{font-weight:800;font-size:1.25rem}
+.bonus{margin-top:16px;padding:12px 14px;border:1px solid var(--pink);border-radius:16px;display:flex;gap:12px;align-items:center;
+  background:rgba(255,31,169,.08)}
+.bonus svg{width:30px;height:30px;fill:none;stroke:var(--pink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bonus strong{display:block;color:var(--pink);font-size:.95rem}
+.bonus span{display:block;font-size:.8rem;color:var(--mute);line-height:1.4}
+footer{margin-top:36px;text-align:center;color:var(--mute);font-size:.85rem;letter-spacing:.04em}
+footer::before{content:"";display:block;width:64px;height:2px;margin:0 auto 14px;background:linear-gradient(90deg,var(--pink),var(--violet))}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 1px var(--pink),0 0 26px rgba(255,31,169,.35)}50%{box-shadow:0 0 0 1px var(--pink),0 0 52px rgba(255,31,169,.7)}}
+.plan{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.plan:nth-child(1){animation-delay:.05s}.plan:nth-child(2){animation-delay:.2s}.plan:nth-child(3){animation-delay:.35s}
+.plan.on::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;animation:glow 2.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.plan,.plan.on::after{animation:none}.plan{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path class="f" d="M8 5v14l11-7z"/></symbol>
+  <symbol id="cam" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+</svg>
+<main>
+  <div class="handle"><span class="dot"></span><b>@matheusnodigital1</b></div>
+  <h1>Pacotes de <strong>Videomaker</strong></h1>
+  <p class="sub">Transforme suas ideias em vídeos que geram resultados.</p>
+
+  <div class="grid">
+    <article class="plan" tabindex="0" data-v="397">
+      <div class="head">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <div><h2>Essencial</h2><p>Ideal para quem está começando</p></div>
+      </div>
+      <div class="price"><small>R$</small><span class="v">397</span><span class="c">,00</span><span class="m">/mês</span></div>
+      <ul>
+        <li><svg><use href="#cal"/></svg><span><b>3</b> meses</span></li>
+        <li><svg><use href="#play"/></svg><span><b>6</b> vídeos</span></li>
+        <li><svg><use href="#cam"/></svg><span><b>2</b> dias de captação</span></li>
+      </ul>
+    </article>
+
+    <article class="plan feat on" tabindex="0" data-v="497">
+      <span class="tag">Mais escolhido</span>
+      <div class="head">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></svg></div>
+        <div><h2>Mais escolhido</h2><p>Para quem busca mais resultados</p></div>
+      </div>
+      <div class="price"><small>R$</small><span class="v">497</span><span class="c">,00</span><span class="m">/mês</span></div>
+      <ul>
+        <li><svg><use href="#cal"/></svg><span><b>6</b> meses</span></li>
+        <li><svg><use href="#play"/></svg><span><b>12</b> vídeos</span></li>
+        <li><svg><use href="#cam"/></svg><span><b>2</b> dias de captação</span></li>
+      </ul>
+    </article>
+
+    <article class="plan" tabindex="0" data-v="547">
+      <div class="head">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z"/></svg></div>
+        <div><h2>Premium</h2><p>Para quem quer o máximo</p></div>
+      </div>
+      <div class="price"><small>R$</small><span class="v">547</span><span class="c">,00</span><span class="m">/mês</span></div>
+      <ul>
+        <li><svg><use href="#cal"/></svg><span><b>8</b> meses</span></li>
+        <li><svg><use href="#play"/></svg><span><b>15</b> vídeos</span></li>
+        <li><svg><use href="#cam"/></svg><span><b>3</b> dias de captação</span></li>
+      </ul>
+      <div class="bonus">
+        <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-2-4-6-4-5-1s5 1 5 1zm0 0c2-4 6-4 5-1s-5 1-5 1z"/></svg>
+        <div><strong>Bônus exclusivo</strong><span>Postagem dos vídeos no Instagram<br>Legendas com copy estratégica</span></div>
+      </div>
+    </article>
+  </div>
+
+  <footer>Produção de conteúdo com estratégia e consistência</footer>
+</main>
+<script>
+(function(){
+  var plans=document.querySelectorAll('.plan');
+  plans.forEach(function(p){
+    function pick(){plans.forEach(function(x){x.classList.remove('on')});p.classList.add('on')}
+    p.addEventListener('click',pick);
+    p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+  });
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var t0=null,dur=1100;
+  var nums=[].map.call(document.querySelectorAll('.v'),function(el){return{el:el,end:+el.textContent}});
+  function step(t){
+    if(t0===null)t0=t;
+    var k=Math.min((t-t0)/dur,1),e=1-Math.pow(1-k,3);
+    nums.forEach(function(n){n.el.textContent=Math.round(n.end*e)});
+    if(k<1)requestAnimationFrame(step);
+  }
+  nums.forEach(function(n){n.el.textContent='0'});
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
