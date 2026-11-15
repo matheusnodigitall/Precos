@@ -46,6 +46,13 @@ input:focus,textarea:focus{border-color:#ff1fa9;box-shadow:0 0 0 3px rgba(255,31
 .send:active{transform:scale(.98)}
 .note{text-align:center;color:#c9b8d9;font-size:.8rem;margin:12px 0 0}
 .err{display:none;text-align:center;color:#ff8a8a;font-size:.9rem;margin:14px 0 0}
+.ok{display:none;text-align:center;padding:34px 20px;border-radius:26px;border:1px solid #ff1fa9;background:rgba(255,31,169,.08);box-shadow:0 0 34px rgba(255,31,169,.3);animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.ok svg{width:64px;height:64px;padding:16px;border-radius:50%;background:linear-gradient(135deg,#ff1fa9,#a21cff);fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ok h2{margin:16px 0 8px;font-size:1.5rem;font-weight:800}
+.ok p{margin:0;color:#c9b8d9;line-height:1.5}
+.sent .q,.sent .send,.sent .note,.sent .err,.sent .sub{display:none}
+.sent .ok{display:block}
+.send[disabled]{opacity:.7;cursor:wait}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.q{animation:none}.bar i{transition:none}}
 </style>
@@ -103,13 +110,14 @@ input:focus,textarea:focus{border-color:#ff1fa9;box-shadow:0 0 0 3px rgba(255,31
     <textarea id="extra" placeholder="Referências, prazo, dúvidas..."></textarea>
   </div>
 
-  <button class="send" id="send" type="button">Enviar para o Matheus no WhatsApp</button>
+  <button class="send" id="send" type="button">Enviar para o Matheus</button>
   <p class="err" id="err">Falta responder as perguntas marcadas em vermelho.</p>
-  <p class="note">Ao tocar, o WhatsApp abre com as suas respostas prontas. É só apertar enviar.</p>
+  <p class="note">Ao tocar, as suas respostas chegam direto para o Matheus.</p>
+  <div class="ok" id="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><h2>Enviado!</h2><p>Recebi as suas respostas. Entro em contato em breve para a gente conversar.</p></div>
 </main>
 <script>
 (function(){
-  var NUM='5514998134901';
+  var EMAIL='mhe3489@gmail.com';
   var reqs=[].slice.call(document.querySelectorAll('[data-req]'));
   function val(q){
     var t=q.querySelector('input,textarea');
@@ -142,14 +150,33 @@ input:focus,textarea:focus{border-color:#ff1fa9;box-shadow:0 0 0 3px rgba(255,31
       return;
     }
     var extra=document.getElementById('extra').value.trim();
-    var msg='Olá, Matheus! Preenchi o briefing:\n\n'+
-      '*Nome:* '+val(reqs[0])+'\n'+
-      '*O que faz:* '+val(reqs[1])+'\n'+
-      '*Objetivo com os vídeos:* '+val(reqs[2])+'\n'+
-      '*Estilo de vídeo:* '+val(reqs[3])+'\n'+
-      '*Vídeos por mês:* '+val(reqs[4])+
-      (extra?'\n*Observações:* '+extra:'');
-    window.location.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg);
+    var btn=document.getElementById('send'),err=document.getElementById('err');
+    var nome=val(reqs[0]);
+    btn.disabled=true;btn.textContent='Enviando...';
+    fetch('https://formsubmit.co/ajax/'+EMAIL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Novo briefing: '+nome,
+        _template:'table',
+        _captcha:'false',
+        'Nome':nome,
+        'O que faz':val(reqs[1]),
+        'Objetivo com os vídeos':val(reqs[2]),
+        'Estilo de vídeo':val(reqs[3]),
+        'Vídeos por mês':val(reqs[4]),
+        'Observações':extra||'-'
+      })
+    }).then(function(r){return r.json()}).then(function(d){
+      if(d&&(d.success===true||d.success==='true')){
+        document.querySelector('main').classList.add('sent');
+        window.scrollTo({top:0,behavior:'smooth'});
+      }else{throw new Error('falha')}
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Enviar para o Matheus';
+      err.textContent='Não foi possível enviar agora. Tente de novo em instantes.';
+      err.style.display='block';
+    });
   });
   refresh();
 })();
