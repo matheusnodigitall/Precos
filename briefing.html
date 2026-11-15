@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07000d">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Briefing · Matheus, videomaker mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background-color:#07000d !important;scroll-padding-top:90px}
+html::before{content:"";position:fixed;inset:0;background:#07000d;z-index:-1}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background-color:#07000d !important;color:#fff;font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;min-height:100vh;overflow-x:hidden;position:relative}
+body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(70px);z-index:0;pointer-events:none}
+body::before{width:60vmax;height:60vmax;top:-30vmax;right:-25vmax;background:radial-gradient(circle,#b01cff 0,rgba(176,28,255,0) 65%);opacity:.5}
+body::after{width:50vmax;height:50vmax;bottom:-25vmax;left:-25vmax;background:radial-gradient(circle,#ff1fa9 0,rgba(255,31,169,0) 65%);opacity:.28}
+.bar{position:sticky;top:0;z-index:5;height:5px;background:rgba(255,255,255,.08)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff1fa9,#a21cff);box-shadow:0 0 12px #ff1fa9;transition:width .35s}
+main{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:22px 18px 44px}
+.handle{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:0 auto 24px;padding:8px 18px;border:1px solid rgba(190,80,255,.35);border-radius:999px;font-size:.85rem;color:#c9b8d9}
+.handle b{color:#fff;font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:#ff1fa9;box-shadow:0 0 10px #ff1fa9}
+h1{margin:0;text-align:center;font-weight:400;font-size:clamp(1.4rem,5vw,1.9rem);line-height:1.1}
+h1 strong{display:block;font-weight:800;font-size:clamp(3rem,14vw,4.8rem);letter-spacing:-.04em;background:linear-gradient(90deg,#c21cff,#ff1fa9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:#c9b8d9;margin:10px 0 26px;font-size:1rem}
+.q{margin:0 0 14px;padding:18px 16px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(190,80,255,.3);animation:rise .6s cubic-bezier(.2,.7,.2,1) both;transition:border-color .25s,box-shadow .25s}
+.q:nth-of-type(2){animation-delay:.08s}.q:nth-of-type(3){animation-delay:.16s}.q:nth-of-type(4){animation-delay:.24s}.q:nth-of-type(5){animation-delay:.32s}
+.q.done{border-color:#ff1fa9;box-shadow:0 0 22px rgba(255,31,169,.22)}
+.q.miss{border-color:#ff5a5a;box-shadow:0 0 22px rgba(255,90,90,.3)}
+.q label,.q .l{display:block;font-weight:600;font-size:1.02rem;margin-bottom:12px}
+.q small{display:block;color:#c9b8d9;font-weight:400;font-size:.8rem;margin-top:3px}
+input,textarea{width:100%;font:inherit;font-size:16px;color:#fff;background:rgba(7,0,13,.7);border:1px solid rgba(190,80,255,.4);border-radius:14px;padding:13px 14px;outline:none}
+textarea{min-height:92px;resize:vertical}
+input:focus,textarea:focus{border-color:#ff1fa9;box-shadow:0 0 0 3px rgba(255,31,169,.25)}
+::placeholder{color:#8f7fa3}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{font:inherit;font-size:.92rem;color:#fff;background:rgba(7,0,13,.7);border:1px solid rgba(190,80,255,.45);border-radius:999px;padding:10px 16px;cursor:pointer;transition:transform .15s,background .2s}
+.chip:active{transform:scale(.95)}
+.chip[aria-pressed="true"]{background:linear-gradient(90deg,#ff1fa9,#a21cff);border-color:transparent;font-weight:600}
+.chip:focus-visible,.send:focus-visible{outline:2px solid #ff1fa9;outline-offset:3px}
+.send{display:block;width:100%;margin-top:20px;padding:17px;border:0;border-radius:999px;font:inherit;font-weight:800;font-size:1.05rem;color:#fff;cursor:pointer;background:linear-gradient(90deg,#ff1fa9,#a21cff);box-shadow:0 0 30px rgba(255,31,169,.45)}
+.send:active{transform:scale(.98)}
+.note{text-align:center;color:#c9b8d9;font-size:.8rem;margin:12px 0 0}
+.err{display:none;text-align:center;color:#ff8a8a;font-size:.9rem;margin:14px 0 0}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.q{animation:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="bar"><i id="prog"></i></div>
+<main>
+  <div class="handle"><span class="dot"></span><b>@matheusnodigital1</b></div>
+  <h1>Vamos nos <strong>conhecer</strong></h1>
+  <p class="sub">Cinco perguntas rápidas, leva menos de 2 minutos.</p>
+
+  <div class="q" id="q-nome" data-req>
+    <label for="nome">Qual é o seu nome?</label>
+    <input id="nome" type="text" autocomplete="name" placeholder="Seu nome ou o da marca">
+  </div>
+
+  <div class="q" id="q-faz" data-req>
+    <label for="faz">O que você ou a sua marca faz?</label>
+    <textarea id="faz" placeholder="Ex.: sou nutricionista e atendo online"></textarea>
+  </div>
+
+  <div class="q" id="q-obj" data-req>
+    <span class="l">Qual é o seu objetivo com os vídeos?<small>Pode escolher mais de uma opção.</small></span>
+    <div class="chips" data-multi>
+      <button class="chip" type="button" aria-pressed="false">Vender mais</button>
+      <button class="chip" type="button" aria-pressed="false">Ganhar seguidores</button>
+      <button class="chip" type="button" aria-pressed="false">Fortalecer a marca</button>
+      <button class="chip" type="button" aria-pressed="false">Divulgar algo específico</button>
+    </div>
+  </div>
+
+  <div class="q" id="q-estilo" data-req>
+    <span class="l">Que estilo de vídeo você quer gravar?<small>Pode escolher mais de uma opção.</small></span>
+    <div class="chips" data-multi>
+      <button class="chip" type="button" aria-pressed="false">Profissional</button>
+      <button class="chip" type="button" aria-pressed="false">Dinâmico</button>
+      <button class="chip" type="button" aria-pressed="false">Humor</button>
+      <button class="chip" type="button" aria-pressed="false">Ainda não sei</button>
+    </div>
+  </div>
+
+  <div class="q" id="q-qtd" data-req>
+    <span class="l">Quantos vídeos por mês seriam ideais?</span>
+    <div class="chips" data-single>
+      <button class="chip" type="button" aria-pressed="false">Até 4</button>
+      <button class="chip" type="button" aria-pressed="false">6</button>
+      <button class="chip" type="button" aria-pressed="false">8</button>
+      <button class="chip" type="button" aria-pressed="false">12 ou mais</button>
+      <button class="chip" type="button" aria-pressed="false">Quero ajuda para decidir</button>
+    </div>
+  </div>
+
+  <div class="q" id="q-extra">
+    <label for="extra">Quer acrescentar algo? <small>Opcional.</small></label>
+    <textarea id="extra" placeholder="Referências, prazo, dúvidas..."></textarea>
+  </div>
+
+  <button class="send" id="send" type="button">Enviar para o Matheus no WhatsApp</button>
+  <p class="err" id="err">Falta responder as perguntas marcadas em vermelho.</p>
+  <p class="note">Ao tocar, o WhatsApp abre com as suas respostas prontas. É só apertar enviar.</p>
+</main>
+<script>
+(function(){
+  var NUM='5514998134901';
+  var reqs=[].slice.call(document.querySelectorAll('[data-req]'));
+  function val(q){
+    var t=q.querySelector('input,textarea');
+    if(t)return t.value.trim();
+    return [].map.call(q.querySelectorAll('.chip[aria-pressed="true"]'),function(c){return c.textContent}).join(', ');
+  }
+  function refresh(){
+    var n=0;
+    reqs.forEach(function(q){var ok=val(q)!=='';q.classList.toggle('done',ok);if(ok){n++;q.classList.remove('miss')}});
+    document.getElementById('prog').style.width=(n/reqs.length*100)+'%';
+    if(n===reqs.length)document.getElementById('err').style.display='none';
+  }
+  document.querySelectorAll('.chips').forEach(function(g){
+    var single=g.hasAttribute('data-single');
+    g.addEventListener('click',function(e){
+      var c=e.target.closest('.chip');if(!c)return;
+      var on=c.getAttribute('aria-pressed')==='true';
+      if(single)g.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed',single?'true':String(!on));
+      refresh();
+    });
+  });
+  document.addEventListener('input',refresh);
+  document.getElementById('send').addEventListener('click',function(){
+    var first=null;
+    reqs.forEach(function(q){if(val(q)===''){q.classList.add('miss');if(!first)first=q}});
+    if(first){
+      document.getElementById('err').style.display='block';
+      first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    var extra=document.getElementById('extra').value.trim();
+    var msg='Olá, Matheus! Preenchi o briefing:\n\n'+
+      '*Nome:* '+val(reqs[0])+'\n'+
+      '*O que faz:* '+val(reqs[1])+'\n'+
+      '*Objetivo com os vídeos:* '+val(reqs[2])+'\n'+
+      '*Estilo de vídeo:* '+val(reqs[3])+'\n'+
+      '*Vídeos por mês:* '+val(reqs[4])+
+      (extra?'\n*Observações:* '+extra:'');
+    window.location.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg);
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
