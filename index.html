@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07000d">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pacotes de Videomaker · @matheusnodigital1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,11 +20,13 @@
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
+html{background-color:#07000d !important}
+html::before{content:"";position:fixed;inset:0;background:#07000d;z-index:-1}
+body{margin:0;background-color:#07000d !important;color:var(--ink);font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
   min-height:100vh;overflow-x:hidden;position:relative}
 body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(70px);z-index:0;pointer-events:none}
-body::before{width:60vmax;height:60vmax;top:-30vmax;right:-25vmax;background:radial-gradient(circle,#b01cff 0,transparent 65%);opacity:.55}
-body::after{width:50vmax;height:50vmax;bottom:-25vmax;left:-25vmax;background:radial-gradient(circle,#ff1fa9 0,transparent 65%);opacity:.3}
+body::before{width:60vmax;height:60vmax;top:-30vmax;right:-25vmax;background:radial-gradient(circle,#b01cff 0,rgba(176,28,255,0) 65%);opacity:.55}
+body::after{width:50vmax;height:50vmax;bottom:-25vmax;left:-25vmax;background:radial-gradient(circle,#ff1fa9 0,rgba(255,31,169,0) 65%);opacity:.3}
 main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:22px 18px 40px}
 .handle{display:flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;margin:0 auto 28px;
   padding:8px 18px;border:1px solid var(--line);border-radius:999px;font-size:.85rem;color:var(--mute)}
