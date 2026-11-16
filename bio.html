@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07000d">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matheus · Videomaker mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+html{background-color:#07000d !important;scroll-behavior:smooth}
+html::before{content:"";position:fixed;inset:0;background:#07000d;z-index:-1}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background-color:#07000d !important;color:#fff;font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;overflow-x:hidden;position:relative}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:70vmax;height:70vmax;top:-35vmax;right:-30vmax;background:radial-gradient(circle,#b01cff 0,rgba(176,28,255,0) 65%);opacity:.5;animation:fl1 14s ease-in-out infinite alternate}
+.b2{width:60vmax;height:60vmax;bottom:-30vmax;left:-30vmax;background:radial-gradient(circle,#ff1fa9 0,rgba(255,31,169,0) 65%);opacity:.3;animation:fl2 17s ease-in-out infinite alternate}
+@keyframes fl1{to{transform:translate(-8vmax,10vmax)}}
+@keyframes fl2{to{transform:translate(10vmax,-8vmax)}}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:26px 18px 130px}
+.hero{text-align:center;padding-top:6px}
+.avatar{position:relative;width:116px;height:116px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center}
+.avatar::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(#ff1fa9,#a21cff,#ff1fa9);animation:spin 5s linear infinite;filter:drop-shadow(0 0 16px rgba(255,31,169,.6))}
+.avatar span{position:relative;width:104px;height:104px;border-radius:50%;background:#12061c;display:grid;place-items:center;font-size:3rem;font-weight:800;background-image:linear-gradient(135deg,#ff1fa9,#a21cff);-webkit-background-clip:text;background-clip:text;color:transparent;box-shadow:inset 0 0 0 52px #12061c}
+.avatar span{color:#fff;background:#12061c;-webkit-background-clip:border-box;background-clip:border-box;box-shadow:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.handle{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid rgba(190,80,255,.4);border-radius:999px;font-size:.85rem;color:#c9b8d9}
+.dot{width:8px;height:8px;border-radius:50%;background:#ff1fa9;box-shadow:0 0 10px #ff1fa9;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.3}}
+h1{margin:16px 0 4px;font-size:clamp(3.2rem,16vw,4.6rem);font-weight:800;letter-spacing:-.045em;line-height:1;background:linear-gradient(90deg,#c21cff,#ff1fa9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-size:1.15rem;font-weight:600;min-height:1.6em}
+.cur{display:inline-block;width:2px;height:1.05em;margin-left:3px;vertical-align:-.15em;background:#ff1fa9;animation:blink .9s steps(1) infinite}
+.rot{margin-top:6px;font-size:1.05rem;color:#c9b8d9;min-height:3em}
+.rot b{color:#ff1fa9;font-weight:800}
+.sec{margin-top:40px}
+.sec h2{margin:0 0 14px;font-size:1.35rem;font-weight:800}
+.sec h2 em{font-style:normal;color:#ff1fa9}
+.box{padding:18px 16px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(190,80,255,.3)}
+.box p{margin:0;line-height:1.6;color:#e6d8f2}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.chart{display:flex;align-items:flex-end;justify-content:space-around;gap:12px;height:210px;padding:0 4px}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;text-align:center}
+.num{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums}
+.num small{display:block;font-size:.7rem;font-weight:600;color:#c9b8d9;margin-bottom:-2px}
+.bar{width:100%;border-radius:14px 14px 6px 6px;background:linear-gradient(180deg,#a21cff,#6a1aa8);height:var(--h);margin:8px 0;transform:scaleY(0);transform-origin:bottom;transition:transform 1.3s cubic-bezier(.2,.8,.2,1)}
+.col:nth-child(2) .bar{transition-delay:.25s}.col:nth-child(3) .bar{transition-delay:.5s;background:linear-gradient(180deg,#ff1fa9,#a21cff);box-shadow:0 0 28px rgba(255,31,169,.55)}
+.in .bar,.nojs .bar{transform:scaleY(1)}
+.lab{font-size:.78rem;color:#c9b8d9;line-height:1.25}
+.stats{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.stat{padding:16px 12px;border-radius:20px;text-align:center;background:rgba(255,255,255,.045);border:1px solid rgba(190,80,255,.3)}
+.stat b{display:block;font-size:2.2rem;font-weight:800;color:#ff1fa9;line-height:1.1}
+.stat span{font-size:.8rem;color:#c9b8d9}
+.wide{font-weight:600;color:#fff}
+.list{display:grid;gap:12px}
+.it{display:flex;gap:14px;align-items:center;padding:14px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(190,80,255,.3)}
+.it i{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#ff1fa9,#a21cff);font-style:normal;font-weight:800}
+.it p{margin:0;line-height:1.4;font-size:.95rem}
+.it p b{display:block;font-size:1.02rem}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.chips span{padding:8px 14px;border-radius:999px;font-size:.85rem;border:1px solid rgba(190,80,255,.45);background:rgba(7,0,13,.6)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,31,169,.55)}50%{box-shadow:0 0 0 14px rgba(255,31,169,0)}}
+.end{text-align:center}
+.end h2{font-size:1.6rem}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;border-radius:999px;font:inherit;font-weight:800;font-size:1.05rem;color:#fff;text-decoration:none;background:linear-gradient(90deg,#ff1fa9,#a21cff);box-shadow:0 0 30px rgba(255,31,169,.5)}
+.wa svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fab{position:fixed;z-index:10;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));width:min(92%,480px);animation:up .8s .6s cubic-bezier(.2,.8,.2,1) both,glow 2.4s 1.4s ease-in-out infinite}
+.ig{display:inline-block;margin-top:14px;padding:12px 22px;border-radius:999px;border:1px solid #ff1fa9;background:rgba(255,31,169,.12);color:#fff;text-decoration:none;font-weight:600}
+.ig:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@keyframes up{from{opacity:0;transform:translate(-50%,40px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes glow{50%{filter:drop-shadow(0 0 14px rgba(255,31,169,.8))}}
+.wa:active{transform:scale(.98)}
+.wa:focus-visible,.th:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}.js .rv{opacity:1;transform:none}.bar{transform:none}.fab{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div>
+<main>
+  <header class="hero">
+    <div class="avatar"><span>M</span></div>
+    <div class="handle"><span class="dot"></span>@matheusnodigitall</div>
+    <h1>Matheus</h1>
+    <div class="role"><span id="role">Videomaker mobile</span><span class="cur"></span></div>
+    <div class="rot">Vídeos que <b id="rot">chamam atenção</b></div>
+  </header>
+
+  <section class="sec rv">
+    <h2>Oi, <em>prazer!</em></h2>
+    <div class="box"><p>Eu sou videomaker autônomo e faço tudo com o celular: gravo, edito e entrego o vídeo pronto, cuidando para que ele tenha a cara da sua marca.</p></div>
+  </section>
+
+  <section class="sec rv" id="res">
+    <h2>Resultado <em>real</em></h2>
+    <div class="box">
+      <div class="chart">
+        <div class="col"><div class="num" data-to="300">300</div><div class="bar" style="--h:30%"></div><div class="lab">Quando começamos</div></div>
+        <div class="col"><div class="num" data-to="600">600</div><div class="bar" style="--h:60%"></div><div class="lab">Em 2 meses</div></div>
+        <div class="col"><div class="num" data-to="1000"><small>quase</small>1.000</div><div class="bar" style="--h:100%"></div><div class="lab">Hoje</div></div>
+      </div>
+      <p style="margin-top:12px;font-size:.85rem;color:#c9b8d9;text-align:center">Seguidores de um cliente, só com vídeo.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-to="2">2</b><span>dias úteis para entregar</span></div>
+      <div class="stat wide">Já tripliquei seguidores de cliente meu</div>
+    </div>
+  </section>
+
+  <section class="sec rv">
+    <h2>O que eu <em>faço</em></h2>
+    <div class="list">
+      <div class="it"><i>1</i><p><b>Gravo e edito</b>Tudo com o celular, com qualidade e dinâmica.</p></div>
+      <div class="it"><i>2</i><p><b>Entrego em até 2 dias úteis</b>Você não fica esperando.</p></div>
+      <div class="it"><i>3</i><p><b>Posto no seu perfil</b>Com legenda e copy estratégica, em alguns pacotes.</p></div>
+    </div>
+    <div class="chips"><span>Corretores</span><span>Clínicas</span><span>Barbeiros</span><span>Influenciadores</span></div>
+  </section>
+
+  <section class="sec rv">
+    <h2>Meu <em>trabalho</em></h2>
+    <div class="box"><p>Todos os vídeos repostados no meu Instagram são trabalhos meus. Dá uma olhada em como eles ficam na prática.</p><a class="ig" href="https://www.instagram.com/matheusnodigitall/" target="_blank" rel="noopener">Ver no Instagram</a></div>
+  </section>
+
+  <section class="sec end rv">
+    <h2>Vamos falar do <em>seu perfil?</em></h2>
+    <p style="color:#c9b8d9;line-height:1.5;margin:0 0 18px">Toque no botão aqui embaixo, me chama no WhatsApp e me conta o seu projeto. Vou adorar conhecer.</p>
+  </section>
+</main>
+<a class="wa fab" href="https://wa.me/5514997482067?text=Ol%C3%A1%2C%20Matheus%21%20Vim%20pelo%20seu%20Instagram%20e%20quero%20conversar%20sobre%20os%20v%C3%ADdeos." target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>Chamar no WhatsApp</a>
+<script>
+(function(){
+  var root=document.documentElement,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var roleEl=document.getElementById('role'),rotEl=document.getElementById('rot');
+  var roleTxt='Videomaker mobile',words=['chamam atenção','geram confiança','viram clientes'];
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+  async function typeTo(el,txt,sp){for(var i=1;i<=txt.length;i++){el.textContent=txt.slice(0,i);await sleep(sp)}}
+  async function erase(el,sp){var t=el.textContent;for(var i=t.length;i>=0;i--){el.textContent=t.slice(0,i);await sleep(sp)}}
+  async function run(){
+    roleEl.textContent='';rotEl.textContent='';
+    await typeTo(roleEl,roleTxt,70);await sleep(250);
+    var i=0;while(true){await typeTo(rotEl,words[i%words.length],55);await sleep(1500);await erase(rotEl,28);i++}
+  }
+  if(!reduce)run();
+  function count(el){
+    var to=+el.getAttribute('data-to'),small=el.querySelector('small'),st=null,d=1300;
+    function f(t){if(st===null)st=t;var k=Math.min((t-st)/d,1),v=Math.round(to*(1-Math.pow(1-k,3)));
+      var txt=v.toLocaleString('pt-BR');
+      if(small){el.innerHTML='';el.appendChild(small);el.appendChild(document.createTextNode(txt))}else el.textContent=txt;
+      if(k<1)requestAnimationFrame(f)}
+    requestAnimationFrame(f);
+  }
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(!('IntersectionObserver' in window)||reduce){els.forEach(function(e){e.classList.add('in')});return}
+  root.classList.add('js');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-to]').forEach(count);
+  })},{threshold:.2});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
